@@ -43,25 +43,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", modifier = modifier
-    )
-}
-
-@Composable
-fun CalculatorApp(modifier: Modifier = Modifier) {
+fun CalculatorApp(
+    modifier: Modifier = Modifier
+) {
     var lengthInput by remember { mutableStateOf("") }
     var widthInput by remember { mutableStateOf("") }
     var result by remember { mutableStateOf("") }
 
-    var length = lengthInput.toDoubleOrNull() ?: 0.0
-    var width = widthInput.toDoubleOrNull() ?: 0.0
+    val length = lengthInput.toDoubleOrNull() ?: 0.0
+    val width = widthInput.toDoubleOrNull() ?: 0.0
 
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp), contentAlignment = Alignment.Center
+        modifier = modifier.fillMaxSize().padding(16.dp),
+        contentAlignment = Alignment.Center,
     ) {
         Column {
             TextField(
@@ -69,25 +63,21 @@ fun CalculatorApp(modifier: Modifier = Modifier) {
                 onValueChange = { lengthInput = it },
                 label = { Text(stringResource(R.string.enter_length)) },
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
-
             Spacer(modifier.height(8.dp))
-
             TextField(
                 value = widthInput,
                 onValueChange = { widthInput = it },
                 label = { Text(stringResource(R.string.enter_width)) },
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             )
-
             Button(onClick = { result = (length * width).toString() }) {
                 Text(stringResource(R.string.count))
             }
-
             Text(
-                text = stringResource(R.string.result, result)
+                text = stringResource(R.string.result, result),
             )
         }
     }
